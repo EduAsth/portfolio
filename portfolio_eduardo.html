@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eduardo Júlio — Designer Gráfico</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-muted: #6b6b66;
+    --ink-faint: #b0afa8;
+    --paper: #f5f3ee;
+    --paper-off: #ede9e1;
+    --accent: #2d5a3d;
+    --accent-light: #edf4f0;
+    --accent-mid: #4a7c5f;
+    --rule: #d4d0c8;
+    --white: #ffffff;
+    --radius-sm: 6px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,243,238,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--accent) !important;
+    color: var(--white) !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem !important;
+    font-weight: 500;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 86vh;
+    display: flex; align-items: center;
+    padding: 5rem 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    gap: 4rem;
+  }
+  .hero-text { flex: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-mid);
+    background: var(--accent-light);
+    border: 1px solid #c2ddd0;
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .hero-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 460px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.15s, transform 0.1s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-primary:hover { background: var(--accent-mid); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.15s;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .hero-visual {
+    flex: 0 0 380px;
+    position: relative;
+  }
+  .hero-img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    height: 420px;
+  }
+  .hero-img-grid .img-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--paper-off);
+  }
+  .hero-img-grid .img-item:first-child {
+    grid-row: 1 / 3;
+    border-radius: var(--radius-lg);
+  }
+  .hero-img-grid img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .hero-img-grid .img-item:hover img { transform: scale(1.04); }
+
+  /* SECTION STRUCTURE */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* WORK GRID */
+  #trabalhos { background: var(--white); }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .work-card {
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .work-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .work-card-img {
+    width: 100%; height: 220px;
+    background: var(--paper-off);
+    overflow: hidden;
+    position: relative;
+  }
+  .work-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .work-card:hover .work-card-img img { transform: scale(1.05); }
+  .work-card-img .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--accent-light), var(--paper-off));
+  }
+  .work-card-img .img-placeholder svg { opacity: 0.3; }
+  .work-card-body { padding: 1.25rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .work-tag {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent-mid);
+    background: var(--accent-light);
+    border-radius: 10px;
+    padding: 3px 10px;
+    margin-bottom: 0.6rem;
+  }
+  .work-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+  .work-desc {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+  .work-link {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px;
+    text-decoration: none;
+  }
+  .work-link:hover { text-decoration: underline; }
+  .work-card-featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 340px;
+  }
+  .work-card-featured .work-card-img { height: 100%; border-radius: 0; }
+  .work-card-featured .work-card-body { padding: 2.5rem; justify-content: center; }
+  .work-card-featured .work-title { font-size: 1.8rem; }
+
+  /* SKILLS */
+  #habilidades { background: var(--accent); color: var(--white); }
+  #habilidades .section-label { color: rgba(255,255,255,0.5); }
+  #habilidades .section-title { color: var(--white); }
+  #habilidades .section-sub { color: rgba(255,255,255,0.65); max-width: 100%; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    transition: background 0.15s;
+  }
+  .skill-card:hover { background: rgba(255,255,255,0.12); }
+  .skill-icon {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  .skill-name { font-weight: 500; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
+  .skill-level { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+  /* SOBRE */
+  #sobre { background: var(--paper-off); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .sobre-img {
+    aspect-ratio: 4/5;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+  .sobre-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sobre-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-light);
+  }
+  .sobre-text .section-label { margin-bottom: 0.5rem; }
+  .sobre-text p { color: var(--ink-muted); line-height: 1.8; margin-bottom: 1rem; }
+  .sobre-xp {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .xp-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--rule);
+  }
+  .xp-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent);
+    margin-top: 5px; flex-shrink: 0;
+  }
+  .xp-role { font-weight: 500; font-size: 0.9rem; }
+  .xp-co { font-size: 0.8rem; color: var(--ink-muted); }
+
+  /* CONTATO */
+  #contato { background: var(--white); text-align: center; }
+  #contato .section-title { margin: 0 auto 1rem; }
+  #contato .section-sub { margin: 0 auto 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px;
+    border: 1px solid var(--rule);
+    border-radius: 30px;
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { flex-direction: column; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+    .hero-visual { flex: none; width: 100%; }
+    .hero-img-grid { height: 280px; }
+    .work-card-featured { grid-template-columns: 1fr; }
+    .work-card-featured .work-card-img { height: 240px; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    section { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Eduardo Júlio</a>
+  <div class="nav-links">
+    <a href="#trabalhos">Trabalhos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#contato" class="nav-cta">Contato</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Disponível para novos projetos</div>
+    <h1 class="hero-headline">Design que <em>comunica</em> e converte.</h1>
+    <p class="hero-sub">Designer gráfico com mais de 5 anos criando identidades visuais, materiais digitais e conteúdo para marcas que querem ser lembradas.</p>
+    <div class="hero-actions">
+      <a href="#trabalhos" class="btn-primary">
+        Ver trabalhos
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contato" class="btn-ghost">
+        Falar comigo
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Anos de experiência</div>
+      </div>
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Peças entregues</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Projetos simultâneos</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-grid">
+      <div class="img-item">
+        <img src="https://drive.google.com/thumbnail?id=1HsIy95Q2xi-jZMujsEA-YlCVP0Kkic6K&sz=w800" alt="Peça gráfica de evento" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="img-item">
+        <img src="https://drive.google.com/thumbnail?id=1HpmqJoNo2S7W5SkV7p1TRSR5GUtFsQ9V&sz=w400" alt="Convite arco-íris" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="img-item">
+        <img src="https://drive.google.com/thumbnail?id=1HuDeYUvVcaaDQPs5HOpiaBPE6vKI9MO7&sz=w400" alt="Post sobre serviços" loading="lazy" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRABALHOS -->
+<section id="trabalhos">
+  <div class="section-inner">
+    <div class="section-label">Portfólio</div>
+    <h2 class="section-title">Trabalhos selecionados</h2>
+    <p class="section-sub">Projetos reais de identidade visual, design editorial, redes sociais e apresentações institucionais.</p>
+
+    <div class="work-grid">
+
+      <!-- FEATURED: Forma Brasil -->
+      <div class="work-card work-card-featured">
+        <div class="work-card-img">
+          <img src="https://drive.google.com/thumbnail?id=1WTJZKw815L_z20CL2SfOLioC9TE7DD7y&sz=w900" alt="Logo Forma Brasil" onerror="this.parentElement.innerHTML='<div class=img-placeholder><svg width=48 height=48 fill=none stroke=%23aaa stroke-width=1.5 viewBox=&quot;0 0 24 24&quot;><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=&quot;m21 15-5-5L5 21&quot;/></svg></div>'">
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Identidade Visual</span>
+          <h3 class="work-title">Forma Brasil Edu — Identidade de marca completa</h3>
+          <p class="work-desc">Desenvolvimento de logo, avatares para redes sociais (Instagram, Facebook, WhatsApp), variações horizontal e vertical, SVGs vetoriais e guia de aplicação da marca para instituição de educação profissionalizante.</p>
+          <a href="https://drive.google.com/drive/folders/1ED77_DnS3KcQJl2XmJqRhKqjYW_0EnrD" class="work-link" target="_blank">Ver arquivos no Drive →</a>
+        </div>
+      </div>
+
+      <!-- Post Instagram -->
+      <a href="https://drive.google.com/file/d/1HsIy95Q2xi-jZMujsEA-YlCVP0Kkic6K/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <img src="https://drive.google.com/thumbnail?id=1HsIy95Q2xi-jZMujsEA-YlCVP0Kkic6K&sz=w600" alt="Post evento 21 de outubro" onerror="this.parentElement.innerHTML='<div class=img-placeholder><svg width=48 height=48 fill=none stroke=%23aaa stroke-width=1.5 viewBox=&quot;0 0 24 24&quot;><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=&quot;m21 15-5-5L5 21&quot;/></svg></div>'">
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Redes Sociais</span>
+          <h3 class="work-title">Post de evento — design para Instagram</h3>
+          <p class="work-desc">Arte para divulgação de evento ao vivo com tipografia em destaque, paleta marcante e hierarquia visual clara para engajamento em feed.</p>
+          <span class="work-link">Ver peça →</span>
+        </div>
+      </a>
+
+      <!-- Marketing Workshop -->
+      <a href="https://drive.google.com/file/d/1HlMcVT1ilGGWRvpKqB3FTYDkJbUjbx5S/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <img src="https://drive.google.com/thumbnail?id=1HlMcVT1ilGGWRvpKqB3FTYDkJbUjbx5S&sz=w600" alt="Marketing Workshop post" onerror="this.parentElement.innerHTML='<div class=img-placeholder><svg width=48 height=48 fill=none stroke=%23aaa stroke-width=1.5 viewBox=&quot;0 0 24 24&quot;><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=&quot;m21 15-5-5L5 21&quot;/></svg></div>'">
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Marketing Digital</span>
+          <h3 class="work-title">Marketing Workshop — post Instagram</h3>
+          <p class="work-desc">Post de divulgação de workshop com contraste alto, identidade visual bold e orientada à conversão.</p>
+          <span class="work-link">Ver peça →</span>
+        </div>
+      </a>
+
+      <!-- Convite -->
+      <a href="https://drive.google.com/file/d/1HpmqJoNo2S7W5SkV7p1TRSR5GUtFsQ9V/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <img src="https://drive.google.com/thumbnail?id=1HpmqJoNo2S7W5SkV7p1TRSR5GUtFsQ9V&sz=w600" alt="Convite arco-íris xadrez rosa" onerror="this.parentElement.innerHTML='<div class=img-placeholder><svg width=48 height=48 fill=none stroke=%23aaa stroke-width=1.5 viewBox=&quot;0 0 24 24&quot;><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=&quot;m21 15-5-5L5 21&quot;/></svg></div>'">
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Design Editorial</span>
+          <h3 class="work-title">Convite arco-íris xadrez</h3>
+          <p class="work-desc">Convite digital com padrão gráfico geométrico, uso de textura xadrez e paleta vibrante. Diagramação para formato digital e impresso.</p>
+          <span class="work-link">Ver peça →</span>
+        </div>
+      </a>
+
+      <!-- Post Serviços -->
+      <a href="https://drive.google.com/file/d/1HuDeYUvVcaaDQPs5HOpiaBPE6vKI9MO7/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <img src="https://drive.google.com/thumbnail?id=1HuDeYUvVcaaDQPs5HOpiaBPE6vKI9MO7&sz=w600" alt="Post sobre nossos serviços" onerror="this.parentElement.innerHTML='<div class=img-placeholder><svg width=48 height=48 fill=none stroke=%23aaa stroke-width=1.5 viewBox=&quot;0 0 24 24&quot;><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=&quot;m21 15-5-5L5 21&quot;/></svg></div>'">
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Redes Sociais</span>
+          <h3 class="work-title">Post de serviços — tom moderno marrom</h3>
+          <p class="work-desc">Arte para apresentação de portfólio de serviços no Instagram com identidade visual coesa, tons terrosos e tipografia contemporânea.</p>
+          <span class="work-link">Ver peça →</span>
+        </div>
+      </a>
+
+      <!-- Dia da mulher -->
+      <a href="https://drive.google.com/file/d/1HnJBsNjkR80tqTYpGOqRfNhlC9ZIn4Ea/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <img src="https://drive.google.com/thumbnail?id=1HnJBsNjkR80tqTYpGOqRfNhlC9ZIn4Ea&sz=w600" alt="Dia da mulher Instagram" onerror="this.parentElement.innerHTML='<div class=img-placeholder><svg width=48 height=48 fill=none stroke=%23aaa stroke-width=1.5 viewBox=&quot;0 0 24 24&quot;><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=&quot;m21 15-5-5L5 21&quot;/></svg></div>'">
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Campanha Sazonal</span>
+          <h3 class="work-title">Dia Internacional da Mulher — stories/banner</h3>
+          <p class="work-desc">Banner 1920×1080px para campanha de Dia da Mulher com estética minimalista neutra e beige, adequada para Instagram e apresentações.</p>
+          <span class="work-link">Ver peça →</span>
+        </div>
+      </a>
+
+      <!-- PDFs / Apresentações -->
+      <a href="https://drive.google.com/file/d/1HNmwA4ZB2V66fyM_mT5ur3Ba-HQm25Xx/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg, #2d5a3d22, #2d5a3d44); width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+            <svg width="48" height="48" fill="none" stroke="#2d5a3d" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+            <span style="font-size:0.75rem; color:#2d5a3d; font-weight:500; letter-spacing:0.05em; text-transform:uppercase;">PDF — Forma Brasil</span>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Design Editorial</span>
+          <h3 class="work-title">Apresentação institucional — Forma Brasil</h3>
+          <p class="work-desc">PDF institucional com diagramação completa, aplicação de identidade visual, typeset e organização de conteúdo para apresentações de cursos profissionalizantes.</p>
+          <span class="work-link">Abrir PDF →</span>
+        </div>
+      </a>
+
+      <!-- Mercury Grade curricular -->
+      <a href="https://drive.google.com/file/d/1HZ1VQVEkZfGudustw1FNOVskvQtuCHLB/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg, #1a3a4a22, #1a3a4a44); width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+            <svg width="48" height="48" fill="none" stroke="#1a3a4a" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span style="font-size:0.75rem; color:#1a3a4a; font-weight:500; letter-spacing:0.05em; text-transform:uppercase;">Grade Curricular — Mercury</span>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Design Editorial</span>
+          <h3 class="work-title">Grade curricular — Mercury</h3>
+          <p class="work-desc">Diagramação de grade curricular completa com hierarquia de informação clara, tabelas e identidade visual coesa para material didático.</p>
+          <span class="work-link">Abrir PDF →</span>
+        </div>
+      </a>
+
+      <!-- Vídeo Seattle -->
+      <a href="https://drive.google.com/file/d/1MzEK8EvLJkHcoGGPmPAav9ycTBiB-yGP/view" target="_blank" class="work-card">
+        <div class="work-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg, #3a1a4a22, #3a1a4a44); width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+            <svg width="48" height="48" fill="none" stroke="#3a1a4a" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            <span style="font-size:0.75rem; color:#3a1a4a; font-weight:500; letter-spacing:0.05em; text-transform:uppercase;">Vídeo — Grupo Seattle</span>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <span class="work-tag">Edição de Vídeo</span>
+          <h3 class="work-title">Apresentação de vendas em vídeo — Grupo Seattle</h3>
+          <p class="work-desc">Edição de vídeo para apresentação comercial com motion design, aplicação de identidade visual e cortes dinâmicos para plataforma digital.</p>
+          <span class="work-link">Assistir →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="sobre-img">
+        <div class="sobre-placeholder">
+          <svg width="80" height="80" fill="none" stroke="#4a7c5f" stroke-width="1" viewBox="0 0 24 24" opacity="0.4"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+      </div>
+      <div class="sobre-text">
+        <div class="section-label">Sobre</div>
+        <h2 class="section-title">5 anos transformando ideias em visual</h2>
+        <p>Designer gráfico com experiência em identidade visual, design editorial, redes sociais e edição de vídeo. Já liderei equipes de design, gerenciei mais de 200 materiais por semestre e desenvolvi marcas completas do zero.</p>
+        <p>Domino toda a suíte Adobe — Photoshop, Illustrator, InDesign e Premiere — além de Canva, Corel Draw e noções de Figma. Formação em Web Developer pela Microcamp e Front-End pelo SENAI.</p>
+        <div class="sobre-xp">
+          <div class="xp-item">
+            <div class="xp-dot"></div>
+            <div>
+              <div class="xp-role">Designer Gráfico Sênior</div>
+              <div class="xp-co">Grupo Seattle · 2022 – presente</div>
+            </div>
+          </div>
+          <div class="xp-item">
+            <div class="xp-dot"></div>
+            <div>
+              <div class="xp-role">Líder de Design / Direção de Arte</div>
+              <div class="xp-co">Editora Legacy · 2021</div>
+            </div>
+          </div>
+          <div class="xp-item">
+            <div class="xp-dot"></div>
+            <div>
+              <div class="xp-role">Designer / Suporte Técnico</div>
+              <div class="xp-co">Inside Planet · 2018 – 2020</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="section-inner">
+    <div class="section-label">Ferramentas & Skills</div>
+    <h2 class="section-title" style="color:var(--white)">O que eu faço</h2>
+    <p class="section-sub">Ferramentas que uso no dia a dia para entregar projetos completos, do conceito ao arquivo final.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">Adobe Photoshop</div>
+        <div class="skill-level">Avançado</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">✏️</div>
+        <div class="skill-name">Adobe Illustrator</div>
+        <div class="skill-level">Avançado</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📐</div>
+        <div class="skill-name">Adobe InDesign</div>
+        <div class="skill-level">Avançado</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎬</div>
+        <div class="skill-name">Adobe Premiere</div>
+        <div class="skill-level">Intermediário–Avançado</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖼️</div>
+        <div class="skill-name">Canva</div>
+        <div class="skill-level">Avançado</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔷</div>
+        <div class="skill-name">Corel Draw</div>
+        <div class="skill-level">Intermediário</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔲</div>
+        <div class="skill-name">Figma</div>
+        <div class="skill-level">Básico–Intermediário</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">HTML / CSS / React</div>
+        <div class="skill-level">Básico (SENAI)</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Redes Sociais</div>
+        <div class="skill-level">Feed, stories, carrosséis</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏷️</div>
+        <div class="skill-name">Identidade Visual</div>
+        <div class="skill-level">Logo, guia de marca</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+    <div class="section-label">Contato</div>
+    <h2 class="section-title">Vamos trabalhar juntos?</h2>
+    <p class="section-sub">Disponível para projetos remotos, oportunidades em Curitiba/PR ou Rio de Janeiro/RJ.</p>
+    <div class="contact-links">
+      <a href="mailto:eduududu@hotmail.com" class="contact-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        eduududu@hotmail.com
+      </a>
+      <a href="tel:+5521974450397" class="contact-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 3.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.18z"/></svg>
+        (21) 97445-0397
+      </a>
+      <a href="https://www.linkedin.com/in/eduardoribeiroti" target="_blank" class="contact-link">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://drive.google.com/drive/folders/1QtYFi9fO2YbZ3KMgAEpPRIcFUbiHzDFL" target="_blank" class="contact-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Drive com todos os arquivos
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Eduardo Júlio Ribeiro Cunha — Designer Gráfico
+</footer>
+
+</body>
+</html>
